@@ -49,20 +49,37 @@ def converter_eval():
 
     while True:
         from_unit = input("Geben Sie die Starteinheit ein/Enter the start unit: ").strip().lower()
-        to_unit = input("Geben Sie die letzte Einheit ein/Enter the last unit: ").strip().lower()
-        value_str = input("Geben Sie einen Wert von ein/Enter a value of: ").strip().lower()
-                
-        value = float(value_str)  
-
-        func_name = f"{from_unit}_to_{to_unit}"
-        if func_name in conversion_dict:
-            result = conversion_dict[func_name](value)
-            print(f"Ergibnes/Results: {result} {to_unit}")
-        else:
-            print ("No conversion found")
-
-        if input ("Möchten Sie fortfahren? (ja/nein)/Would you like to continue? (yes/no) ").strip().lower() !="ja":
+        try:
+            from_unit = input
             break
+        except:
+            print("Falsch!")
+    while True:
+        to_unit = input("Geben Sie die letzte Einheit ein/Enter the last unit: ").strip().lower()
+        try:
+            print(input)
+            to_unit = input
+            print(to_unit)
+
+        except:
+            print("Falsch!") 
+
+    while True:
+        value_str = input("Geben Sie einen Wert von ein/Enter a value of: ").strip()
+        try:    
+            value = float(value_str)
+            break
+        except ValueError:
+            print("Falsch!")
+    func_name = f"{from_unit}_to_{to_unit}"
+    if func_name in conversion_dict:
+        result = conversion_dict[func_name](value)
+        print(f"Ergibnes/Results: {result} {to_unit}")
+    else:
+        print ("No conversion found")
+
+    if input ("Möchten Sie fortfahren? (ja/nein)/Would you like to continue? (yes/no) ").strip().lower() !="ja":
+        pass
 
 if __name__ == "__main__":
     converter_eval()
