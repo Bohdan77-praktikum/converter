@@ -21,6 +21,9 @@ def pound_to_g(pound): return pound / 0.00220462
 def celsius_to_fahrenheit(celsius): return (celsius * 9/5) + 32
 def fahrenheit_to_celsius(fahrenhe): return (fahrenhe - 32) * 5/9
 
+    
+einheiten = ["cm","m","ml","km","foot","mile","inch","litres","gallon","pound","kg","g","celsius","fahrenheit"]
+
 def converter_eval():
     conversion_dict = {
         "cm_to_m" : cm_to_m,
@@ -49,37 +52,31 @@ def converter_eval():
 
     while True:
         from_unit = input("Geben Sie die Starteinheit ein/Enter the start unit: ").strip().lower()
-        try:
-            from_unit = input
-            break
-        except:
-            print("Falsch!")
-    while True:
+        if from_unit in einheiten:
+            print("Korreckt!")
+        else:
+            print("Falsh! Bitte eine gültige Einheit eingeben")
+            continue 
         to_unit = input("Geben Sie die letzte Einheit ein/Enter the last unit: ").strip().lower()
+        if to_unit in einheiten:
+            print("Korreckt!")
+        else:
+            print("Falsh! Bitte eine gültige Einheit eingeben")
+            continue
+        value_str = input("Geben Sie einen Wert von ein/Enter a value of: ").strip().lower()
         try:
-            print(input)
-            to_unit = input
-            print(to_unit)
-
-        except:
-            print("Falsch!") 
-
-    while True:
-        value_str = input("Geben Sie einen Wert von ein/Enter a value of: ").strip()
-        try:    
             value = float(value_str)
-            break
         except ValueError:
-            print("Falsch!")
-    func_name = f"{from_unit}_to_{to_unit}"
-    if func_name in conversion_dict:
-        result = conversion_dict[func_name](value)
-        print(f"Ergibnes/Results: {result} {to_unit}")
-    else:
-        print ("No conversion found")
-
-    if input ("Möchten Sie fortfahren? (ja/nein)/Would you like to continue? (yes/no) ").strip().lower() !="ja":
-        pass
-
+            print("Falsh!")
+            value_str = input("Geben Sie einen Wert von ein/Enter a value of: ").strip().lower() 
+            value = float(value_str)      
+        func_name = f"{from_unit}_to_{to_unit}"
+        if func_name in conversion_dict:
+            result = conversion_dict[func_name](value)
+            print(f"Ergibnes/Results: {result} {to_unit}")
+        else:
+            print ("No conversion found")
+        if input ("Möchten Sie fortfahren? (ja/nein)").strip().lower() !="ja":
+            break
 if __name__ == "__main__":
     converter_eval()
